@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nyl Hair Design | Especialista em Cortes e Prótese Capilar — Ponta Grossa PR</title>
+  <meta name="description"
+    content="Nyl Hair Design em Ponta Grossa. Especialista em cortes masculinos e femininos e prótese capilar com resultado 100% natural. Agende pelo WhatsApp." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+  <style>
+    :root {
+      --black: #0a0a0a;
+      --dark: #111111;
+      --card: #181818;
+      --border: #2a2a2a;
+      --gold: #c9a96e;
+      --gold-lt: #e6c990;
+      --white: #f5f2ed;
+      --muted: #888880;
+      --green: #25D366;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+    }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── UTILITY ────────────────────────────────── */
+    .serif {
+      font-family: 'Playfair Display', serif;
+    }
+
+    .gold {
+      color: var(--gold);
+    }
+
+    .upper {
+      text-transform: uppercase;
+      letter-spacing: .2em;
+      font-size: .75rem;
+    }
+
+    .divider {
+      width: 48px;
+      height: 1px;
+      background: var(--gold);
+      margin: 1.5rem auto;
+    }
+
+    /* ── NAV ───────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 1.25rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(10, 10, 10, .85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      transition: all .4s ease;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      letter-spacing: .05em;
+      color: var(--gold);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .875rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      transition: color .3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold-lt);
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--black);
+      padding: .65rem 1.5rem;
+      font-size: .75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .15em;
+      text-decoration: none;
+      transition: all .3s ease;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-lt);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(201, 169, 110, .3);
+    }
+
+    .btn-outline {
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: .65rem 1.5rem;
+      font-size: .75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: .15em;
+      text-decoration: none;
+      transition: all .3s ease;
+      display: inline-block;
+    }
+
+    .btn-outline:hover {
+      background: var(--gold);
+      color: var(--black);
+      transform: translateY(-2px);
+    }
+
+    /* ── HERO ──────────────────────────────────── */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('hero-bg.png') center/cover no-repeat;
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(105deg,
+          rgba(10, 10, 10, .97) 0%,
+          rgba(10, 10, 10, .80) 50%,
+          rgba(10, 10, 10, .40) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      padding: 0 2.5rem;
+      margin-left: clamp(1rem, 8vw, 8rem);
+    }
+
+    .hero-eyebrow {
+      font-size: .7rem;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
+      line-height: 1.1;
+      font-weight: 900;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: rgba(245, 242, 237, .65);
+      max-width: 500px;
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-float-tag {
+      position: absolute;
+      right: 4vw;
+      bottom: 12vh;
+      z-index: 2;
+      text-align: right;
+      display: none;
+    }
+
+    @media(min-width:900px) {
+      .hero-float-tag {
+        display: block;
+      }
+    }
+
+    .hero-float-tag p {
+      font-size: .65rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: .35rem;
+    }
+
+    .hero-float-tag span {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--gold);
+    }
+
+    /* ── MARQUEE STRIP ─────────────────────────── */
+    .marquee-strip {
+      background: var(--gold);
+      padding: .9rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .marquee-inner {
+      display: inline-flex;
+      animation: marquee 22s linear infinite;
+    }
+
+    .marquee-inner span {
+      font-size: .7rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--black);
+      font-weight: 600;
+      padding: 0 3rem;
+    }
+
+    .marquee-inner span.dot {
+      padding: 0;
+      color: var(--black);
+      opacity: .4;
+    }
+
+    @keyframes marquee {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* ── SECTION WRAPPER ───────────────────────── */
+    section {
+      padding: 7rem 2.5rem;
+    }
+
+    .section-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: .68rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: .8rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 3.5rem;
+    }
+
+    /* ── SERVICES ──────────────────────────────── */
+    #servicos {
+      background: var(--dark);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5px;
+      border: 1.5px solid var(--border);
+    }
+
+    .service-card {
+      padding: 3rem 2.5rem;
+      background: var(--card);
+      border: 1px solid transparent;
+      transition: border-color .35s ease, background .35s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gold);
+      transition: width .45s cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .service-card:hover::before {
+      width: 100%;
+    }
+
+    .service-card:hover {
+      background: #1c1c1c;
+      border-color: var(--border);
+    }
+
+    .service-icon {
+      width: 52px;
+      height: 52px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.8rem;
+      font-size: 1.4rem;
+    }
+
+    .service-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem;
+      font-weight: 900;
+      color: rgba(201, 169, 110, .07);
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+      line-height: 1;
+      user-select: none;
+    }
+
+    .service-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.55rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .service-desc {
+      color: var(--muted);
+      font-size: .9rem;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    .service-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+
+    .tag {
+      font-size: .65rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      border: 1px solid var(--border);
+      padding: .3rem .75rem;
+      color: var(--muted);
+    }
+
+    .service-cta {
+      display: inline-block;
+      margin-top: 2rem;
+      font-size: .7rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(201, 169, 110, .3);
+      padding-bottom: .15rem;
+      transition: border-color .3s;
+    }
+
+    .service-cta:hover {
+      border-color: var(--gold);
+    }
+
+    /* ── FEATURED / PROSTHETICS ────────────────── */
+    #protese {
+      background: var(--black);
+      padding: 7rem 2.5rem;
+    }
+
+    .protese-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    @media(max-width:800px) {
+      .protese-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+    }
+
+    .protese-visuals {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      position: relative;
+    }
+
+    .protese-visuals::before {
+      content: '';
+      position: absolute;
+      top: -2rem;
+      left: -2rem;
+      width: 80px;
+      height: 80px;
+      border-top: 2px solid var(--gold);
+      border-left: 2px solid var(--gold);
+    }
+
+    .pv-img {
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      background: var(--card);
+    }
+
+    .pv-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(20%);
+      transition: transform .7s cubic-bezier(.22, 1, .36, 1), filter .7s;
+    }
+
+    .pv-img:hover img {
+      transform: scale(1.06);
+      filter: grayscale(0);
+    }
+
+    .pv-img:nth-child(2) {
+      margin-top: 3rem;
+    }
+
+    .protese-text {}
+
+    .protese-text .section-title {
+      margin-bottom: .5rem;
+    }
+
+    .protese-text p {
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+      line-height: 1.85;
+    }
+
+    .protese-checks {
+      margin: 2rem 0 2.5rem;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: .75rem;
+      margin-bottom: .9rem;
+      color: rgba(245, 242, 237, .8);
+      font-size: .9rem;
+    }
+
+    .check-item::before {
+      content: '—';
+      color: var(--gold);
+      flex-shrink: 0;
+      margin-top: .05rem;
+    }
+
+    /* ── GALLERY ────────────────────────────────── */
+    #galeria {
+      background: var(--dark);
+    }
+
+    .gallery-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3rem;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: .75rem;
+    }
+
+    @media(max-width:700px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .g-item {
+      overflow: hidden;
+      position: relative;
+      background: var(--card);
+    }
+
+    .g-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .7s cubic-bezier(.22, 1, .36, 1);
+      aspect-ratio: 3/4;
+    }
+
+    .g-item:hover img {
+      transform: scale(1.08);
+    }
+
+    .g-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, .7) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity .4s;
+      display: flex;
+      align-items: flex-end;
+      padding: 1.2rem;
+    }
+
+    .g-item:hover .g-overlay {
+      opacity: 1;
+    }
+
+    .g-label {
+      font-size: .65rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    /* ── TESTIMONIALS ───────────────────────────── */
+    #depoimentos {
+      background: var(--black);
+    }
+
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .testi-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 2.5rem;
+      position: relative;
+    }
+
+    .testi-quote {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      line-height: 1.75;
+      color: rgba(245, 242, 237, .85);
+      margin-bottom: 2rem;
+    }
+
+    .testi-author {
+      font-size: .75rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .testi-role {
+      font-size: .7rem;
+      color: var(--gold);
+      margin-top: .25rem;
+    }
+
+    .stars {
+      color: var(--gold);
+      font-size: .8rem;
+      margin-bottom: 1rem;
+    }
+
+    /* ── CTA BAND ───────────────────────────────── */
+    #cta {
+      background: var(--gold);
+      padding: 6rem 2.5rem;
+      text-align: center;
+    }
+
+    #cta .section-label {
+      color: rgba(0, 0, 0, .5);
+    }
+
+    #cta h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4.5vw, 3.5rem);
+      font-weight: 900;
+      color: var(--black);
+      margin-bottom: 1rem;
+      line-height: 1.15;
+    }
+
+    #cta p {
+      color: rgba(0, 0, 0, .6);
+      max-width: 460px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .btn-dark {
+      background: var(--black);
+      color: var(--gold);
+      padding: 1rem 2.5rem;
+      font-size: .75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .2em;
+      text-decoration: none;
+      transition: all .3s ease;
+      display: inline-block;
+    }
+
+    .btn-dark:hover {
+      background: var(--dark);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, .35);
+    }
+
+    /* ── FOOTER ─────────────────────────────────── */
+    footer {
+      background: #070707;
+      border-top: 1px solid var(--border);
+      padding: 4rem 2.5rem 2.5rem;
+    }
+
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 2rem;
+    }
+
+    @media(max-width:800px) {
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-brand {
+        grid-column: 1/-1;
+      }
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--gold);
+      margin-bottom: .75rem;
+    }
+
+    .footer-tagline {
+      color: var(--muted);
+      font-size: .82rem;
+      max-width: 240px;
+      line-height: 1.7;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: .75rem;
+      margin-top: 1.5rem;
+    }
+
+    .social-btn {
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .75rem;
+      transition: all .3s;
+    }
+
+    .social-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .footer-col h5 {
+      font-size: .65rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 1.2rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col li {
+      margin-bottom: .7rem;
+    }
+
+    .footer-col a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .85rem;
+      transition: color .3s;
+    }
+
+    .footer-col a:hover {
+      color: var(--gold);
+    }
+
+    .footer-col p {
+      color: var(--muted);
+      font-size: .85rem;
+      margin-bottom: .5rem;
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-bottom p {
+      color: var(--muted);
+      font-size: .75rem;
+    }
+
+    /* ── MAP ─────────────────────────────────────── */
+    .map-wrap {
+      margin-top: 2rem;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      height: 280px;
+    }
+
+    .map-wrap iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      filter: grayscale(80%) brightness(.7);
+    }
+
+    /* ── WHATSAPP FLOAT ─────────────────────────── */
+    .wa-float {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 200;
+      width: 60px;
+      height: 60px;
+      background: var(--green);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 32px rgba(37, 211, 102, .4);
+      transition: transform .3s, box-shadow .3s;
+      text-decoration: none;
+    }
+
+    .wa-float:hover {
+      transform: scale(1.12);
+      box-shadow: 0 12px 48px rgba(37, 211, 102, .5);
+    }
+
+    .wa-float svg {
+      width: 28px;
+      height: 28px;
+      fill: white;
+    }
+
+    /* ── MOBILE NAV ─────────────────────────────── */
+    .nav-links {
+      display: flex;
+    }
+
+    @media(max-width:768px) {
+      .hero-inner-grid {
+        grid-template-columns: 1fr !important;
+        padding-top: 6rem;
+        min-height: auto !important;
+        padding-bottom: 3rem;
+      }
+
+      .hero-inner-grid .hero-logo {
+        order: -1;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      nav {
+        padding: 1rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══════════════════ NAV ═════════════════════ -->
+  <nav id="navbar">
+    <div class="nav-logo">Nyl Hair Design</div>
+    <div class="nav-links">
+      <a href="#servicos">Serviços</a>
+      <a href="#protese">Prótese Capilar</a>
+      <a href="#galeria">Galeria</a>
+      <a href="#depoimentos">Depoimentos</a>
+    </div>
+    <a class="btn-primary"
+      href="https://wa.me/5542988820334?text=Olá%2C%20vim%20do%20site%2C%20gostaria%20de%20marcar%20um%20horário">Agendar</a>
+  </nav>
+
+  <!-- ═══════════════════ HERO ════════════════════ -->
+  <section id="hero">
+    <!-- Fundo escuro com gradiente sutil -->
+    <div
+      style="position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%, rgba(201,169,110,.08) 0%, transparent 65%), linear-gradient(135deg, #0a0a0a 0%, #141414 100%);z-index:0;">
+    </div>
+
+    <!-- Layout 2 colunas -->
+    <div class="hero-inner-grid"
+      style="position:relative;z-index:2;width:100%;max-width:1200px;margin:0 auto;padding:0 2.5rem;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:4rem;min-height:100vh;">
+
+      <!-- Texto -->
+      <div class="hero-content" style="margin-left:0;padding:0;">
+        <!-- <p class="hero-eyebrow">Ponta Grossa · Paraná · Desde 2010</p> -->
+        <h1 class="hero-title">
+          Corte que define.<br>
+          <em>Prótese que liberta.</em>
+        </h1>
+        <p class="hero-sub">
+          Especialista em corte masculino e prótese capilar com resultado indistinguível do natural. Cuide do
+          seu visual com quem entende de verdade.
+        </p>
+        <div class="hero-ctas">
+          <a class="btn-primary"
+            href="https://wa.me/5542988820334?text=Olá%2C%20vim%20do%20site%2C%20gostaria%20de%20marcar%20um%20horário">Agendar
+            pelo WhatsApp</a>
+          <a class="btn-outline" href="#servicos">Ver Serviços</a>
+        </div>
+      </div>
+
+      <!-- Logo -->
+      <div class="hero-logo" style="display:flex;align-items:center;justify-content:center;">
+        <img src="logo_nyl_branca.png" alt="Nyl Hair Design"
+          style="max-width:420px;width:100%;opacity:.95;filter:drop-shadow(0 0 60px rgba(201,169,110,.25));" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ STRIP ═══════════════════ -->
+  <div class="marquee-strip">
+    <div class="marquee-inner">
+      <span>Cortes Masculinos</span><span class="dot">·</span>
+      <span>Prótese Capilar Natural</span><span class="dot">·</span>
+      <span>Barba Profissional</span><span class="dot">·</span>
+      <span>Penteados Especiais</span><span class="dot">·</span>
+      <span>Cortes Femininos</span><span class="dot">·</span>
+      <span>Resultado Imperceptível</span><span class="dot">·</span>
+      <span>Cortes Masculinos</span><span class="dot">·</span>
+      <span>Prótese Capilar Natural</span><span class="dot">·</span>
+      <span>Barba Profissional</span><span class="dot">·</span>
+      <span>Penteados Especiais</span><span class="dot">·</span>
+      <span>Cortes Femininos</span><span class="dot">·</span>
+      <span>Resultado Imperceptível</span><span class="dot">·</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ SERVIÇOS ════════════════ -->
+  <section id="servicos">
+    <div class="section-inner">
+      <p class="section-label">O que fazemos</p>
+      <h2 class="section-title">Nossos Serviços</h2>
+      <p class="section-subtitle">Dois grandes pilares: o corte perfeito e a transformação que só a prótese capilar pode
+        oferecer.</p>
+
+      <div class="services-grid">
+        <!-- CORTES -->
+        <div class="service-card">
+          <span class="service-num">01</span>
+          <div class="service-icon" aria-hidden="true">✂</div>
+          <h3 class="service-name">Cortes</h3>
+          <p class="service-desc">
+            Do degradê técnico ao corte autoral masculino, cada detalhe é trabalhado para valorizar seu rosto e projetar
+            confiança. Também atendemos cortes femininos com a mesma precisão.
+          </p>
+          <div class="service-tags">
+            <span class="tag">Degradê</span>
+            <span class="tag">Navalha</span>
+            <span class="tag">Tesoura</span>
+            <span class="tag">Corte Feminino</span>
+          </div>
+          <a class="service-cta"
+            href="https://wa.me/5542988820334?text=Olá%2C%20vim%20do%20site%2C%20gostaria%20de%20agendar%20um%20corte">Agendar
+            corte →</a>
+        </div>
+
+        <!-- PRÓTESE CAPILAR -->
+        <div class="service-card">
+          <span class="service-num">02</span>
+          <div class="service-icon" aria-hidden="true">◈</div>
+          <h3 class="service-name">Prótese Capilar</h3>
+          <p class="service-desc">
+            Solução definitiva para queda de cabelo e alopecia. Aplicamos próteses capilares com cabelo natural, fixação
+            segura e acabamento tão perfeito que ninguém percebe, nem você mesmo.
+          </p>
+          <div class="service-tags">
+            <span class="tag">Cabelo Natural</span>
+            <span class="tag">Invisível</span>
+            <span class="tag">Manutenção</span>
+            <span class="tag">Consulta Grátis</span>
+          </div>
+          <a class="service-cta"
+            href="https://wa.me/5542988820334?text=Olá%2C%20quero%20saber%20mais%20sobre%20prótese%20capilar">Consulta
+            gratuita →</a>
+        </div>
+
+        <!-- BARBA E ESTÉTICA -->
+        <div class="service-card">
+          <span class="service-num">03</span>
+          <div class="service-icon" aria-hidden="true">◻</div>
+          <h3 class="service-name">Barba &amp; Acabamento</h3>
+          <p class="service-desc">
+            Barba desenhada, hidratada e modelada para complementar seu estilo. Acabamento impecável que fecha o visual
+            com perfeição.
+          </p>
+          <div class="service-tags">
+            <span class="tag">Barba Desenhada</span>
+            <span class="tag">Navalha</span>
+            <span class="tag">Hidratação</span>
+          </div>
+          <a class="service-cta"
+            href="https://wa.me/5542988820334?text=Olá%2C%20vim%20do%20site%2C%20gostaria%20de%20marcar%20um%20horário">Agendar
+            →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ PRÓTESE — DESTAQUE ══════ -->
+  <!-- <section id="protese">
+    <div class="section-inner">
+      <div class="protese-grid"> -->
+
+  <!-- VISUAL LADO ESQUERDO -->
+  <!-- <div class="protese-visuals">
+          <div class="pv-img">
+            <img
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlswwFNRghhcZojRa4z5WidF84R4p81SCxrZYxMVuI7NBe1qUz_nOB7n5dReNTRgCAgsQFto0ePVsE9d7UqVyw-Y9kfyrWoACM7UzRqSKyJ5fjws6iC8tluwWjnfpRASkj0jXJ6mLT81DKUPDAmSXwg6OoOEWcAz6CVBHbAigVDDNTeT7vptzJl6-tHhlL3NFmQuezmz7q0MQfIWy66nI5EOiW-7u51nz5veNdu6ahBi3F1bd1X_Tr9uylpzTI-2ZWpYbcsJvZHSQ"
+              alt="Cliente com prótese capilar natural" />
+          </div>
+          <div class="pv-img">
+            <img
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6SpZZQFrDYPQgIldso0i7F_el7y-vIbOZ1csElIyG68020L23PsoY095oMkD9Kudzz4eiIOYyO-P4o_SgTz3LwNGUph4Va1LmxzDl2xKeP8ODupfEaUtCCBi13ZBsphzm_aFux5slQtGo2fjh3XbLKNffh1I-muPJws-Y-gqoUxAH7F0oR-0CJ9JvTSYeA1bwcpFEz7uILPCW5L82zKZtXtU6cMHxMGrJbcDOBqxlqTS4UHL74cZhQYsfDsoO87jXIpHrFoFmWnY"
+              alt="Transformação capilar" />
+          </div>
+        </div>
+
+        TEXTO DIREITO 
+        <div class="protese-text">
+          <p class="section-label">Especialidade Principal</p>
+          <h2 class="section-title">
+            Prótese Capilar<br>
+            <em class="gold" style="font-family:'Playfair Display',serif;font-style:italic;">100% Natural</em>
+          </h2>
+          <p>
+            A queda de cabelo é um problema que vai além do visual — afeta a autoestima, a confiança e a forma como você
+            se apresenta ao mundo. Na Nyl Hair Design, temos a solução que devolve tudo isso.
+          </p>
+          <p>
+            Trabalhamos com as melhores próteses capilares do mercado, usando cabelo humano, fixação segura e técnica
+            apurada para um resultado que ninguém vai perceber — nem quem está do seu lado.
+          </p>
+
+          <div class="protese-checks">
+            <div class="check-item">Cabelo 100% natural, com textura e cor personalizada</div>
+            <div class="check-item">Fixação resistente à água, suor e vento</div>
+            <div class="check-item">Resultado imperceptível ao toque e à vista</div>
+            <div class="check-item">Manutenção periódica para máxima durabilidade</div>
+            <div class="check-item">Consulta inicial gratuita e sem compromisso</div>
+          </div>
+
+          <a class="btn-primary"
+            href="https://wa.me/5542988820334?text=Olá%2C%20quero%20saber%20sobre%20prótese%20capilar%20na%20Nyl%20Hair%20Design"
+            style="font-size:.75rem;">Consulta Gratuita pelo WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  <!-- ═══════════════════ GALERIA ══════════════════ -->
+  <section id="galeria">
+    <div class="section-inner">
+      <div class="gallery-header">
+        <div>
+          <p class="section-label">Nossos resultados</p>
+          <h2 class="section-title" style="margin-bottom:0">Galeria de Transformações</h2>
+        </div>
+        <a class="btn-outline" href="https://www.instagram.com/nyl.hairdesign" target="_blank" rel="noopener">Ver
+          Instagram →</a>
+      </div>
+
+      <!-- Before/after pairs label -->
+      <div style="display:flex;gap:.5rem;margin-bottom:1.5rem;flex-wrap:wrap;">
+        <span style="font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);">Antes</span>
+        <span style="font-size:.65rem;color:var(--border);">·</span>
+        <span style="font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);">Depois —
+          resultados reais dos nossos clientes</span>
+      </div>
+
+      <div class="gallery-grid">
+        <!-- Par 1 -->
+        <div class="g-item">
+          <img src="img/antes1.jpeg" alt="Antes — prótese capilar cliente 1" />
+          <div class="g-overlay"><span class="g-label">Antes · Prótese Capilar</span></div>
+        </div>
+        <div class="g-item">
+          <img src="img/depois1.jpeg" alt="Depois — prótese capilar cliente 1" />
+          <div class="g-overlay"><span class="g-label" style="color:var(--gold);">Depois · Prótese Capilar</span></div>
+        </div>
+
+        <!-- Par 3 -->
+        <div class="g-item">
+          <img src="img/antes11.jpeg" alt="Antes — prótese capilar cliente 3" />
+          <div class="g-overlay"><span class="g-label">Antes · Prótese Capilar</span></div>
+        </div>
+        <div class="g-item">
+          <img src="img/depois12.jpg" alt="Depois — prótese capilar cliente 3" />
+          <div class="g-overlay"><span class="g-label" style="color:var(--gold);">Depois · Prótese Capilar</span></div>
+        </div>
+
+        <!-- Par 2 -->
+        <div class="g-item">
+          <img src="img/antes2.jpg" alt="Antes — corte cliente 2" />
+          <div class="g-overlay"><span class="g-label">Antes · Corte Masculino</span></div>
+        </div>
+        <div class="g-item">
+          <img src="img/depois2.jpg" alt="Depois — corte cliente 2" />
+          <div class="g-overlay"><span class="g-label" style="color:var(--gold);">Depois · Corte Masculino</span></div>
+        </div>
+      </div>
+
+      <p
+        style="text-align:center;margin-top:2rem;font-size:.75rem;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;">
+        Siga no Instagram <a href="https://www.instagram.com/nyl.hairdesign" target="_blank"
+          style="color:var(--gold);text-decoration:none;">@nyl.hairdesign</a> para mais transformações
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ DEPOIMENTOS ═════════════ -->
+  <section id="depoimentos">
+    <div class="section-inner">
+      <p class="section-label" style="text-align:center">O que dizem nossos clientes</p>
+      <h2 class="section-title" style="text-align:center;margin-bottom:.5rem">Resultados que falam</h2>
+      <div class="divider"></div>
+
+      <div class="testi-grid">
+        <div class="testi-card">
+          <div class="stars">★★★★★</div>
+          <p class="testi-quote">
+            "Fiz minha prótese capilar na Nyl e mudou minha vida. O resultado é tão natural que ninguém percebe.
+            Recuperei minha autoestima por completo."
+          </p>
+          <p class="testi-author">Ricardo Mendes</p>
+          <p class="testi-role">Cliente — Prótese Capilar</p>
+        </div>
+        <div class="testi-card">
+          <div class="stars">★★★★★</div>
+          <p class="testi-quote">
+            "Melhor corte que já fiz na vida. O Nyl entende exatamente o que eu quero, me orienta e entrega um resultado
+            impecável. Recomendo sem hesitar."
+          </p>
+          <p class="testi-author">Rafael Lima</p>
+          <p class="testi-role">Cliente — Corte &amp; Barba</p>
+        </div>
+        <div class="testi-card">
+          <div class="stars">★★★★★</div>
+          <p class="testi-quote">
+            "Fui fazer a prótese com medo do resultado e saí de lá transformado. Nem os meus filhos perceberam. A
+            técnica deles é incrível, confiança total."
+          </p>
+          <p class="testi-author">Marcos Oliveira</p>
+          <p class="testi-role">Cliente — Prótese Capilar</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ CTA ══════════════════════ -->
+  <section id="cta">
+    <p class="section-label" style="text-align:center">Pronto para transformar?</p>
+    <h2>Agende seu horário hoje mesmo</h2>
+    <p>Corte preciso ou prótese capilar natural. Fale com a gente agora pelo WhatsApp — atendimento rápido e sem
+      complicação.</p>
+    <a class="btn-dark"
+      href="https://wa.me/5542988820334?text=Olá%2C%20vim%20do%20site%20da%20Nyl%20Hair%20Design%20e%20quero%20agendar%20um%20horário">Falar
+      pelo WhatsApp</a>
+  </section>
+
+  <!-- ═══════════════════ FOOTER ═══════════════════ -->
+  <footer>
+    <div class="footer-grid">
+      <!-- BRAND -->
+      <div class="footer-brand">
+        <div class="footer-logo">Nyl Hair Design</div>
+        <p class="footer-tagline">Especialistas em cortes masculinos/femininos e prótese capilar. Ponta Grossa, Paraná.
+        </p>
+        <div class="footer-social">
+          <a class="social-btn" href="https://www.instagram.com/nyl.hairdesign" target="_blank" rel="noopener"
+            aria-label="Instagram">
+            <img src="img/instagram.png" alt="Instagram"
+              style="width:20px;height:20px;object-fit:contain;filter:brightness(0.6);transition:filter .3s;"
+              onmouseover="this.style.filter='brightness(1)'" onmouseout="this.style.filter='brightness(0.6)'" />
+          </a>
+          <a class="social-btn" href="https://www.facebook.com/nylhair/" target="_blank" rel="noopener"
+            aria-label="Facebook">
+            <img src="img/facebook.png" alt="Facebook"
+              style="width:20px;height:20px;object-fit:contain;filter:brightness(0.6);transition:filter .3s;"
+              onmouseover="this.style.filter='brightness(1)'" onmouseout="this.style.filter='brightness(0.6)'" />
+          </a>
+          <a class="social-btn" href="https://wa.me/5542988820334" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <img src="img/whatsapp.png" alt="WhatsApp"
+              style="width:20px;height:20px;object-fit:contain;filter:brightness(0.6);transition:filter .3s;"
+              onmouseover="this.style.filter='brightness(1)'" onmouseout="this.style.filter='brightness(0.6)'" />
+          </a>
+        </div>
+      </div>
+
+      <!-- SERVIÇOS -->
+      <div class="footer-col">
+        <h5>Serviços</h5>
+        <ul>
+          <li><a href="#servicos">Cortes Masculinos</a></li>
+          <li><a href="#servicos">Cortes Femininos</a></li>
+          <li><a href="#protese">Prótese Capilar</a></li>
+          <li><a href="#servicos">Barba &amp; Acabamento</a></li>
+          <li><a href="#servicos">Penteados Especiais</a></li>
+        </ul>
+      </div>
+
+      <!-- CONTATO -->
+      <div class="footer-col">
+        <h5>Contato</h5>
+        <p><a href="tel:+554232241909">(42) 3224-1909</a></p>
+        <p><a href="https://wa.me/5542988820334">(42) 98882-0334</a></p>
+        <p><a href="https://instagram.com/nyl.hairdesign">@nyl.hairdesign</a></p>
+      </div>
+
+      <!-- HORÁRIOS -->
+      <div class="footer-col">
+        <h5>Horário</h5>
+        <p>Ter – Sex: 09h às 20h</p>
+        <p>Sábado: 09h às 18h</p>
+        <p>Dom / Seg: Fechado</p>
+
+        <div class="map-wrap" style="margin-top:1.5rem;">
+          <iframe
+            src="https://maps.google.com/maps?q=R.+Santos+Dumont,+423+-+Centro,+Ponta+Grossa+-+PR,+84010-360&t=&z=16&ie=UTF8&iwloc=&output=embed"
+            title="Localização Nyl Hair Design" allowfullscreen loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>R. Santos Dumont, 423 — Centro, Ponta Grossa – PR, 84010-360</p>
+      <p>© 2026 Nyl Hair Design. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════ WHATSAPP FLOAT ══════════ -->
+  <a class="wa-float"
+    href="https://wa.me/5542988820334?text=Olá%2C%20vim%20do%20site%2C%20gostaria%20de%20marcar%20um%20horário"
+    aria-label="Falar pelo WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+    </svg>
+  </a>
+
+  <script>
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 80) {
+        navbar.style.background = 'rgba(10,10,10,.97)';
+        navbar.style.padding = '0.9rem 2.5rem';
+      } else {
+        navbar.style.background = 'rgba(10,10,10,.85)';
+        navbar.style.padding = '1.25rem 2.5rem';
+      }
+    });
+
+    // Fade-in on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.service-card, .testi-card, .pv-img, .g-item').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(32px)';
+      el.style.transition = 'opacity .65s ease, transform .65s cubic-bezier(.22,1,.36,1)';
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+
+</html>
