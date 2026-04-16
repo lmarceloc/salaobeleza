@@ -356,6 +356,68 @@
       border-color: var(--border);
     }
 
+    .service-card--wide {
+      grid-column: 1 / -1;
+    }
+
+    .service-card--wide .service-tags {
+      justify-content: flex-start;
+    }
+
+    @media (min-width: 900px) {
+      .service-card--wide {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        column-gap: 3rem;
+        align-items: center;
+      }
+
+      .service-card--wide .service-num {
+        position: static;
+      }
+
+      .service-card--wide .service-icon {
+        margin: 0;
+      }
+
+      .service-card--wide .service-desc {
+        margin: 0;
+      }
+
+      .service-card--wide .service-tags {
+        margin: 0;
+        flex-wrap: wrap;
+      }
+
+      .service-card--wide .service-cta {
+        margin: 0;
+        white-space: nowrap;
+      }
+
+      .service-card--wide .service-name {
+        grid-column: 2;
+        margin: 0 0 .5rem 0;
+      }
+
+      .service-card--wide > .service-icon {
+        grid-row: 1 / span 3;
+      }
+
+      .service-card--wide > .service-desc {
+        grid-column: 2;
+      }
+
+      .service-card--wide > .service-tags {
+        grid-column: 2;
+        margin-top: 1rem;
+      }
+
+      .service-card--wide > .service-cta {
+        grid-column: 3;
+        grid-row: 1 / span 3;
+      }
+    }
+
     .service-icon {
       width: 52px;
       height: 52px;
@@ -406,6 +468,17 @@
       border: 1px solid var(--border);
       padding: .3rem .75rem;
       color: var(--muted);
+      background: transparent;
+      cursor: default;
+      transition: color .3s ease, border-color .3s ease, background .3s ease, transform .3s ease, box-shadow .3s ease;
+    }
+
+    .tag:hover {
+      color: var(--black);
+      background: var(--gold);
+      border-color: var(--gold);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(201, 169, 110, .25);
     }
 
     .service-cta {
@@ -776,15 +849,27 @@
       max-width: 1200px;
       margin: 0 auto;
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
+      justify-content: center;
       align-items: center;
+      text-align: center;
       flex-wrap: wrap;
-      gap: 1rem;
+      gap: .5rem;
     }
 
     .footer-bottom p {
       color: var(--muted);
       font-size: .75rem;
+    }
+
+    .footer-bottom a {
+      color: var(--white);
+      text-decoration: none;
+      transition: color .3s ease;
+    }
+
+    .footer-bottom a:hover {
+      color: var(--gold);
     }
 
     /* ── MAP ─────────────────────────────────────── */
@@ -939,29 +1024,9 @@
         oferecer.</p>
 
       <div class="services-grid">
-        <!-- CORTES -->
-        <div class="service-card">
-          <span class="service-num">01</span>
-          <div class="service-icon" aria-hidden="true">✂</div>
-          <h3 class="service-name">Cortes</h3>
-          <p class="service-desc">
-            Do degradê técnico ao corte autoral masculino, cada detalhe é trabalhado para valorizar seu rosto e projetar
-            confiança. Também atendemos cortes femininos com a mesma precisão.
-          </p>
-          <div class="service-tags">
-            <span class="tag">Degradê</span>
-            <span class="tag">Navalha</span>
-            <span class="tag">Tesoura</span>
-            <span class="tag">Corte Feminino</span>
-          </div>
-          <a class="service-cta"
-            href="https://wa.me/5542988820334?text=Olá%2C%20vim%20do%20site%2C%20gostaria%20de%20agendar%20um%20corte">Agendar
-            corte →</a>
-        </div>
-
         <!-- PRÓTESE CAPILAR -->
         <div class="service-card">
-          <span class="service-num">02</span>
+          <span class="service-num">01</span>
           <div class="service-icon" aria-hidden="true">◈</div>
           <h3 class="service-name">Prótese Capilar</h3>
           <p class="service-desc">
@@ -977,6 +1042,26 @@
           <a class="service-cta"
             href="https://wa.me/5542988820334?text=Olá%2C%20quero%20saber%20mais%20sobre%20prótese%20capilar">Consulta
             gratuita →</a>
+        </div>
+
+        <!-- CORTES -->
+        <div class="service-card">
+          <span class="service-num">02</span>
+          <div class="service-icon" aria-hidden="true">✂</div>
+          <h3 class="service-name">Cortes</h3>
+          <p class="service-desc">
+            Do degradê técnico ao corte autoral masculino, cada detalhe é trabalhado para valorizar seu rosto e projetar
+            confiança. Também atendemos cortes femininos com a mesma precisão.
+          </p>
+          <div class="service-tags">
+            <span class="tag">Degradê</span>
+            <span class="tag">Navalha</span>
+            <span class="tag">Tesoura</span>
+            <span class="tag">Corte Feminino</span>
+          </div>
+          <a class="service-cta"
+            href="https://wa.me/5542988820334?text=Olá%2C%20vim%20do%20site%2C%20gostaria%20de%20agendar%20um%20corte">Agendar
+            corte →</a>
         </div>
 
         <!-- BARBA E ESTÉTICA -->
@@ -995,6 +1080,27 @@
           </div>
           <a class="service-cta"
             href="https://wa.me/5542988820334?text=Olá%2C%20vim%20do%20site%2C%20gostaria%20de%20marcar%20um%20horário">Agendar
+            →</a>
+        </div>
+
+        <!-- ESTÉTICA & BELEZA -->
+        <div class="service-card service-card--wide">
+          <span class="service-num">04</span>
+          <div class="service-icon" aria-hidden="true">✦</div>
+          <h3 class="service-name">Estética &amp; Beleza</h3>
+          <p class="service-desc">
+            Cuidado completo para realçar sua beleza. Tratamentos e técnicas para cabelo, pele e unhas executados com
+            produtos profissionais e atenção aos mínimos detalhes.
+          </p>
+          <div class="service-tags">
+            <span class="tag">Depilação</span>
+            <span class="tag">Maquiagem</span>
+            <span class="tag">Manicure / Pedicure</span>
+            <span class="tag">Coloração</span>
+            <span class="tag">Escova Progressiva</span>
+          </div>
+          <a class="service-cta"
+            href="https://wa.me/5542988820334?text=Olá%2C%20vim%20do%20site%2C%20gostaria%20de%20agendar%20um%20serviço%20de%20estética">Agendar
             →</a>
         </div>
       </div>
@@ -1060,8 +1166,6 @@
           <p class="section-label">Nossos resultados</p>
           <h2 class="section-title" style="margin-bottom:0">Galeria de Transformações</h2>
         </div>
-        <a class="btn-outline" href="https://www.instagram.com/nyl.hairdesign" target="_blank" rel="noopener">Ver
-          Instagram →</a>
       </div>
 
       <!-- Before/after pairs label -->
@@ -1104,11 +1208,10 @@
         </div>
       </div>
 
-      <p
-        style="text-align:center;margin-top:2rem;font-size:.75rem;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;">
-        Siga no Instagram <a href="https://www.instagram.com/nyl.hairdesign" target="_blank"
-          style="color:var(--gold);text-decoration:none;">@nyl.hairdesign</a> para mais transformações
-      </p>
+      <div style="text-align:center;margin-top:2rem;">
+        <a class="btn-outline" href="https://www.instagram.com/nyl.hairdesign" target="_blank" rel="noopener">Ver
+          Instagram →</a>
+      </div>
     </div>
   </section>
 
@@ -1123,29 +1226,30 @@
         <div class="testi-card">
           <div class="stars">★★★★★</div>
           <p class="testi-quote">
-            "Fiz minha prótese capilar na Nyl e mudou minha vida. O resultado é tão natural que ninguém percebe.
-            Recuperei minha autoestima por completo."
+            "Os profissionais são competentes e atenciosos e o ambiente de alto astral."
           </p>
-          <p class="testi-author">Ricardo Mendes</p>
-          <p class="testi-role">Cliente — Prótese Capilar</p>
+          <p class="testi-role">Avaliação Google</p>
         </div>
         <div class="testi-card">
           <div class="stars">★★★★★</div>
           <p class="testi-quote">
-            "Melhor corte que já fiz na vida. O Nyl entende exatamente o que eu quero, me orienta e entrega um resultado
-            impecável. Recomendo sem hesitar."
+            "Vou de Curitiba à Ponta Grossa porque confio totalmente no seu trabalho."
           </p>
-          <p class="testi-author">Rafael Lima</p>
-          <p class="testi-role">Cliente — Corte &amp; Barba</p>
+          <p class="testi-role">Avaliação Google</p>
         </div>
         <div class="testi-card">
           <div class="stars">★★★★★</div>
           <p class="testi-quote">
-            "Fui fazer a prótese com medo do resultado e saí de lá transformado. Nem os meus filhos perceberam. A
-            técnica deles é incrível, confiança total."
+            "Recomendo muito fazer cabelo e unhas aqui 💅🏻 ✨️"
           </p>
-          <p class="testi-author">Marcos Oliveira</p>
-          <p class="testi-role">Cliente — Prótese Capilar</p>
+          <p class="testi-role">Avaliação Google</p>
+        </div>
+        <div class="testi-card">
+          <div class="stars">★★★★★</div>
+          <p class="testi-quote">
+            "Bom lugar, bom atendimento. Recomendo."
+          </p>
+          <p class="testi-role">Avaliação Google</p>
         </div>
       </div>
     </div>
@@ -1200,6 +1304,11 @@
           <li><a href="#protese">Prótese Capilar</a></li>
           <li><a href="#servicos">Barba &amp; Acabamento</a></li>
           <li><a href="#servicos">Penteados Especiais</a></li>
+          <li><a href="#servicos">Depilação</a></li>
+          <li><a href="#servicos">Maquiagem</a></li>
+          <li><a href="#servicos">Manicure / Pedicure</a></li>
+          <li><a href="#servicos">Coloração</a></li>
+          <li><a href="#servicos">Escova Progressiva</a></li>
         </ul>
       </div>
 
@@ -1208,7 +1317,6 @@
         <h5>Contato</h5>
         <p><a href="tel:+554232241909">(42) 3224-1909</a></p>
         <p><a href="https://wa.me/5542988820334">(42) 98882-0334</a></p>
-        <p><a href="https://instagram.com/nyl.hairdesign">@nyl.hairdesign</a></p>
       </div>
 
       <!-- HORÁRIOS -->
@@ -1218,7 +1326,7 @@
         <p>Sábado: 09h às 18h</p>
         <p>Dom / Seg: Fechado</p>
 
-        <div class="map-wrap" style="margin-top:1.5rem;">
+        <div class="map-wrap" style="margin-top:1.5rem;width:calc(100% + 3rem);margin-left:-3rem;">
           <iframe
             src="https://maps.google.com/maps?q=R.+Santos+Dumont,+423+-+Centro,+Ponta+Grossa+-+PR,+84010-360&t=&z=16&ie=UTF8&iwloc=&output=embed"
             title="Localização Nyl Hair Design" allowfullscreen loading="lazy"
@@ -1229,7 +1337,7 @@
     </div>
 
     <div class="footer-bottom">
-      <p>R. Santos Dumont, 423 — Centro, Ponta Grossa – PR, 84010-360</p>
+      <p>Feito com ❤️ por <a href="https://agenciabyte.com" target="_blank" rel="noopener">Agência Byte</a></p>
       <p>© 2026 Nyl Hair Design. Todos os direitos reservados.</p>
     </div>
   </footer>
