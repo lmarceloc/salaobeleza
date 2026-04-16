@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login — Nyl Hair Design</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+  <style>
+    :root {
+      --black: #0a0a0a;
+      --dark: #111111;
+      --card: #181818;
+      --border: #2a2a2a;
+      --gold: #c9a96e;
+      --gold-lt: #e6c990;
+      --white: #f5f2ed;
+      --muted: #888880;
+      --danger: #ff6b6b;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html { font-size: 16px; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(201, 169, 110, .08), transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(201, 169, 110, .05), transparent 40%);
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 420px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 3rem 2.5rem;
+      position: relative;
+    }
+
+    .login-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .brand {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .brand-logo {
+      display: block;
+      margin: 0 auto;
+      max-width: 180px;
+      height: auto;
+    }
+
+    .brand-eyebrow {
+      font-size: .65rem;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: .5rem;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: .4rem;
+      text-align: center;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: var(--muted);
+      font-size: .85rem;
+      margin-bottom: 2rem;
+    }
+
+    label {
+      display: block;
+      font-size: .7rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: .5rem;
+    }
+
+    input {
+      width: 100%;
+      background: var(--dark);
+      border: 1px solid var(--border);
+      color: var(--white);
+      padding: .9rem 1rem;
+      font-family: inherit;
+      font-size: .95rem;
+      transition: border-color .3s;
+      margin-bottom: 1.25rem;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+
+    .btn-primary {
+      width: 100%;
+      background: var(--gold);
+      color: var(--black);
+      border: none;
+      padding: .9rem 1.5rem;
+      font-size: .75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .2em;
+      cursor: pointer;
+      transition: all .3s ease;
+      font-family: inherit;
+      margin-top: .5rem;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background: var(--gold-lt);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(201, 169, 110, .3);
+    }
+
+    .btn-primary:disabled {
+      opacity: .5;
+      cursor: not-allowed;
+    }
+
+    .message {
+      margin-top: 1rem;
+      padding: .75rem 1rem;
+      font-size: .85rem;
+      border: 1px solid var(--border);
+      display: none;
+    }
+
+    .message.error {
+      display: block;
+      border-color: var(--danger);
+      color: var(--danger);
+    }
+
+    .message.success {
+      display: block;
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 1.5rem;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .75rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      transition: color .3s;
+    }
+
+    .back-link:hover { color: var(--gold-lt); }
+  </style>
+</head>
+
+<body>
+  <main class="login-card">
+    <div class="brand">
+      <img src="/logo_nyl_branca.png" alt="Nyl Hair Design" class="brand-logo" />
+      <div class="brand-eyebrow">Área Restrita</div>
+    </div>
+
+    <h1>Acesso ao Painel</h1>
+    <p class="subtitle">Entre para gerenciar clientes e agendamentos.</p>
+
+    <form id="login-form" novalidate>
+      <label for="email">E-mail</label>
+      <input id="email" name="email" type="email" autocomplete="email" required />
+
+      <label for="password">Senha</label>
+      <input id="password" name="password" type="password" autocomplete="current-password" required />
+
+      <button type="submit" class="btn-primary" id="submit-btn">Entrar</button>
+
+      <div class="message" id="message"></div>
+    </form>
+
+    <a href="/" class="back-link">← Voltar ao site</a>
+  </main>
+
+  <script type="module">
+    import { supabase } from '/supabase.js';
+
+    const form = document.getElementById('login-form');
+    const btn = document.getElementById('submit-btn');
+    const msg = document.getElementById('message');
+
+    (async () => {
+      const { data } = await supabase.auth.getSession();
+      if (data.session) window.location.replace('/dashboard');
+    })();
+
+    function show(kind, text) {
+      msg.className = 'message ' + kind;
+      msg.textContent = text;
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+
+      if (!email || !password) {
+        show('error', 'Informe e-mail e senha.');
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Entrando...';
+      msg.className = 'message';
+
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
+
+      if (error) {
+        show('error', error.message === 'Invalid login credentials'
+          ? 'E-mail ou senha inválidos.'
+          : error.message);
+        btn.disabled = false;
+        btn.textContent = 'Entrar';
+        return;
+      }
+
+      show('success', 'Bem-vindo(a). Redirecionando...');
+      window.location.replace('/dashboard');
+    });
+  </script>
+</body>
+
+</html>
