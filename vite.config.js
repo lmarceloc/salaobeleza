@@ -16,6 +16,7 @@ export default defineConfig({
   appType: 'mpa',
   plugins: [cleanUrls],
   build: {
+    target: 'es2022',
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),

@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /login
+Disallow: /dashboard
+Disallow: /supabase.js
+
+Sitemap: https://www.nylhairdesign.com.br/sitemap.xml
