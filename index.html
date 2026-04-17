@@ -722,13 +722,14 @@
 
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: .75rem;
+      grid-template-columns: repeat(3, 220px);
+      gap: 1rem;
+      justify-content: center;
     }
 
     @media(max-width:700px) {
       .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 220px);
       }
     }
 
@@ -736,6 +737,8 @@
       overflow: hidden;
       position: relative;
       background: var(--card);
+      width: 220px;
+      height: 220px;
     }
 
     .g-item img {
@@ -744,7 +747,7 @@
       object-fit: cover;
       display: block;
       transition: transform .7s cubic-bezier(.22, 1, .36, 1);
-      aspect-ratio: 3/4;
+      cursor: pointer;
     }
 
     .g-item:hover img {
@@ -773,6 +776,197 @@
       color: var(--white);
     }
 
+    /* ── SLIDERS ────────────────────────────────── */
+    .sliders-container {
+      margin-top: 5rem;
+      padding-top: 5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .slider-section {
+      margin-bottom: 4rem;
+    }
+
+    .slider-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    }
+
+    .slider-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .slider-nav {
+      display: flex;
+      gap: .75rem;
+    }
+
+    .slider-arrow {
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      transition: all .3s ease;
+    }
+
+    .slider-arrow:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .slider-wrapper {
+      position: relative;
+      overflow: hidden;
+      background: var(--card);
+    }
+
+    .slider-track {
+      display: flex;
+      transition: transform .5s cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .slider-item {
+      flex: 0 0 100%;
+      height: 400px;
+      overflow: hidden;
+      position: relative;
+      background: var(--card);
+    }
+
+    .slider-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .7s cubic-bezier(.22, 1, .36, 1);
+      cursor: pointer;
+    }
+
+    .slider-item:hover img {
+      transform: scale(1.05);
+    }
+
+    /* ── MODAL LIGHTBOX ─────────────────────────── */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, .95);
+      animation: fadeIn .3s ease;
+    }
+
+    .modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      max-width: 90vw;
+      max-height: 90vh;
+      position: relative;
+      animation: zoomIn .3s ease;
+    }
+
+    .modal-content img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: var(--white);
+      font-size: 2rem;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      transition: color .3s;
+    }
+
+    .modal-close:hover {
+      color: var(--gold);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    @media(max-width:768px) {
+      .slider-item {
+        height: 300px;
+      }
+
+      .modal-close {
+        top: 10px;
+        right: 15px;
+        font-size: 1.5rem;
+      }
+    }
+
+    .slider-dots {
+      display: flex;
+      justify-content: center;
+      gap: .5rem;
+      padding: 1.5rem 0;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--border);
+      cursor: pointer;
+      transition: all .3s ease;
+    }
+
+    .dot.active {
+      background: var(--gold);
+      width: 24px;
+      border-radius: 4px;
+    }
+
+    .dot:hover {
+      background: var(--gold);
+    }
+
+    @media(max-width:768px) {
+      .slider-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+
+      .slider-arrow {
+        width: 36px;
+        height: 36px;
+        font-size: .9rem;
+      }
+    }
+
     /* ── TESTIMONIALS ───────────────────────────── */
     #depoimentos {
       background: var(--black);
@@ -780,8 +974,20 @@
 
     .testi-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(4, 1fr);
       gap: 1.5rem;
+    }
+
+    @media(max-width:1200px) {
+      .testi-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media(max-width:768px) {
+      .testi-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     .testi-card {
@@ -1297,57 +1503,132 @@
   <!-- ═══════════════════ GALERIA ══════════════════ -->
   <section id="galeria">
     <div class="section-inner">
-      <div class="gallery-header">
-        <div>
-          <p class="section-label">Nossos resultados</p>
-          <h2 class="section-title" style="margin-bottom:0">Galeria de Transformações</h2>
+
+      <!-- ═══════════════ SLIDERS ════════════════ -->
+      <div class="sliders-container">
+
+        <!-- ESPAÇO - PRIMEIRO -->
+        <div class="slider-section" style="margin-bottom: 0;">
+          <div class="slider-header" style="margin-bottom: 2rem;">
+            <h3 class="slider-title">O Espaço</h3>
+          </div>
+          <div class="gallery-grid" style="margin-bottom: 3rem;">
+            <div class="g-item">
+              <img src="img/espaco1.jpeg" alt="Espaço 1" />
+            </div>
+            <div class="g-item">
+              <img src="img/espaco2.jpeg" alt="Espaço 2" />
+            </div>
+            <div class="g-item">
+              <img src="img/espaco3.jpeg" alt="Espaço 3" />
+            </div>
+            <div class="g-item">
+              <img src="img/espaco4.jpeg" alt="Espaço 4" />
+            </div>
+            <div class="g-item">
+              <img src="img/espaco5.jpeg" alt="Espaço 5" />
+            </div>
+            <div class="g-item">
+              <img src="img/espaco6.jpeg" alt="Espaço 6" />
+            </div>
+
+          </div>
         </div>
+
+        <!-- PRÓTESE CAPILAR MASCULINA (renomeado de Galeria de Transformações) -->
+        <div class="slider-section" style="margin-bottom: 0;">
+          <div class="slider-header" style="margin-bottom: 2rem;">
+            <h3 class="slider-title">Prótese Capilar Masculina</h3>
+          </div>
+          <div class="gallery-grid" style="margin-bottom: 3rem;">
+            <div class="g-item">
+              <img src="img/antes1.jpeg" alt="Antes — prótese capilar cliente 1" />
+              <div class="g-overlay"><span class="g-label">Antes · Prótese Capilar</span></div>
+            </div>
+
+            <div class="g-item">
+              <img src="img/antes11.jpeg" alt="Antes — prótese capilar cliente 3" />
+              <div class="g-overlay"><span class="g-label">Antes · Prótese Capilar</span></div>
+            </div>
+            <div class="g-item">
+              <img src="img/depois1.jpeg" alt="Depois — prótese capilar cliente 1" />
+              <div class="g-overlay"><span class="g-label" style="color:var(--gold);">Depois · Prótese Capilar</span></div>
+            </div>
+            <div class="g-item">
+              <img src="img/depois12.jpg" alt="Depois — prótese capilar cliente 3" />
+              <div class="g-overlay"><span class="g-label" style="color:var(--gold);">Depois · Prótese Capilar</span></div>
+            </div>
+
+            <div class="g-item">
+              <img src="img/antes2.jpg" alt="Antes — corte cliente 2" />
+              <div class="g-overlay"><span class="g-label">Antes · Corte Masculino</span></div>
+            </div>
+            <div class="g-item">
+              <img src="img/depois2.jpg" alt="Depois — corte cliente 2" />
+              <div class="g-overlay"><span class="g-label" style="color:var(--gold);">Depois · Corte Masculino</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PRÓTESE CAPILAR FEMININA (4 imagens - PAR, GRID) -->
+        <div class="slider-section" style="margin-bottom: 0;">
+          <div class="slider-header" style="margin-bottom: 2rem;">
+            <h3 class="slider-title">Prótese Capilar Feminina · Antes e Depois</h3>
+          </div>
+          <div class="gallery-grid" style="grid-template-columns: repeat(2, 220px); margin-bottom: 3rem;">
+            <div class="g-item">
+              <img src="img/antesprotesefem1.jpeg" alt="Prótese feminina antes 1" />
+            </div>
+            <div class="g-item">
+              <img src="img/depoisprotesefem1.jpeg" alt="Prótese feminina depois 1" />
+            </div>
+            <div class="g-item">
+              <img src="img/antesprotesefem2.jpeg" alt="Prótese feminina antes 2" />
+            </div>
+            <div class="g-item">
+              <img src="img/depoisprotesefem2.jpeg" alt="Prótese feminina depois 2" />
+            </div>
+          </div>
+        </div>
+
+        <!-- CORTES DE CABELO (3 imagens - IMPAR, LINHA) -->
+        <div class="slider-section" style="margin-bottom: 0;">
+          <div class="slider-header" style="margin-bottom: 2rem;">
+            <h3 class="slider-title">Cortes de Cabelo</h3>
+          </div>
+          <div class="gallery-grid" style="grid-template-columns: repeat(3, 220px); margin-bottom: 3rem;">
+            <div class="g-item">
+              <img src="img/cabelocurto.jpeg" alt="Cabelo curto" />
+            </div>
+            <div class="g-item">
+              <img src="img/cabelomedio.jpeg" alt="Cabelo médio" />
+            </div>
+            <div class="g-item">
+              <img src="img/cabelolongo.jpeg" alt="Cabelo longo" />
+            </div>
+          </div>
+        </div>
+
+        <!-- COLORAÇÃO (3 imagens - IMPAR, LINHA) -->
+        <div class="slider-section" style="margin-bottom: 0;">
+          <div class="slider-header" style="margin-bottom: 2rem;">
+            <h3 class="slider-title">Coloração</h3>
+          </div>
+          <div class="gallery-grid" style="grid-template-columns: repeat(3, 220px); margin-bottom: 3rem;">
+            <div class="g-item">
+              <img src="img/color1.jpeg" alt="Cor 1" />
+            </div>
+            <div class="g-item">
+              <img src="img/color2.jpeg" alt="Cor 2" />
+            </div>
+            <div class="g-item">
+              <img src="img/color3.jpeg" alt="Cor 3" />
+            </div>
+          </div>
+        </div>
+
       </div>
 
-      <!-- Before/after pairs label -->
-      <div style="display:flex;gap:.5rem;margin-bottom:1.5rem;flex-wrap:wrap;">
-        <span style="font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);">Antes</span>
-        <span style="font-size:.65rem;color:var(--border);">·</span>
-        <span style="font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);">Depois —
-          resultados reais dos nossos clientes</span>
-      </div>
-
-      <div class="gallery-grid">
-        <!-- Par 1 -->
-        <div class="g-item">
-          <img src="img/antes1.jpeg" alt="Antes — prótese capilar cliente 1" />
-          <div class="g-overlay"><span class="g-label">Antes · Prótese Capilar</span></div>
-        </div>
-
-        <!-- Par 3 -->
-        <div class="g-item">
-          <img src="img/antes11.jpeg" alt="Antes — prótese capilar cliente 3" />
-          <div class="g-overlay"><span class="g-label">Antes · Prótese Capilar</span></div>
-        </div>
-        <div class="g-item">
-          <img src="img/depois1.jpeg" alt="Depois — prótese capilar cliente 1" />
-          <div class="g-overlay"><span class="g-label" style="color:var(--gold);">Depois · Prótese Capilar</span></div>
-        </div>
-        <div class="g-item">
-          <img src="img/depois12.jpg" alt="Depois — prótese capilar cliente 3" />
-          <div class="g-overlay"><span class="g-label" style="color:var(--gold);">Depois · Prótese Capilar</span></div>
-        </div>
-
-        <!-- Par 2 -->
-        <div class="g-item">
-          <img src="img/antes2.jpg" alt="Antes — corte cliente 2" />
-          <div class="g-overlay"><span class="g-label">Antes · Corte Masculino</span></div>
-        </div>
-        <div class="g-item">
-          <img src="img/depois2.jpg" alt="Depois — corte cliente 2" />
-          <div class="g-overlay"><span class="g-label" style="color:var(--gold);">Depois · Corte Masculino</span></div>
-        </div>
-      </div>
-
-      <div style="text-align:center;margin-top:2rem;">
-        <a class="btn-outline" href="https://www.instagram.com/nyl.hairdesign" target="_blank" rel="noopener">Ver
-          Instagram →</a>
-      </div>
     </div>
   </section>
 
@@ -1478,6 +1759,14 @@
     </div>
   </footer>
 
+  <!-- ═══════════════════ MODAL LIGHTBOX ═════════ -->
+  <div id="imageModal" class="modal">
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <div class="modal-content">
+      <img id="modalImage" src="" alt="Imagem ampliada" />
+    </div>
+  </div>
+
   <!-- ═══════════════════ WHATSAPP FLOAT ══════════ -->
   <a class="wa-float"
     href="https://wa.me/5542988820334?text=Olá%2C%20vim%20do%20site%2C%20gostaria%20de%20marcar%20um%20horário"
@@ -1517,6 +1806,41 @@
       el.style.transition = 'opacity .65s ease, transform .65s cubic-bezier(.22,1,.36,1)';
       observer.observe(el);
     });
+
+    // Slider system (no sliders anymore, all converted to grids)
+
+    // Lightbox modal
+    function openModal(imageSrc) {
+      const modal = document.getElementById('imageModal');
+      const modalImage = document.getElementById('modalImage');
+      modalImage.src = imageSrc;
+      modal.classList.add('active');
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('imageModal');
+      modal.classList.remove('active');
+    }
+
+    // Close modal on ESC key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    // Close modal on background click
+    document.getElementById('imageModal')?.addEventListener('click', (e) => {
+      if (e.target.id === 'imageModal') closeModal();
+    });
+
+    // Add click event to gallery images
+    function initGallery() {
+      document.querySelectorAll('.g-item img').forEach(img => {
+        img.addEventListener('click', () => openModal(img.src));
+      });
+    }
+
+    // Initialize gallery on load
+    window.addEventListener('DOMContentLoaded', initGallery);
   </script>
 
   <!-- Vercel Analytics & Speed Insights -->
