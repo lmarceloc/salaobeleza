@@ -219,14 +219,47 @@
     /* ── LIST ITEMS ───────────────────────────── */
     .item-row {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
+      flex-direction: column;
+      gap: .75rem;
       background: var(--card);
       border: 1px solid var(--border);
-      padding: 1rem 1.25rem;
-      margin-bottom: .5rem;
+      padding: 1.25rem;
+      margin-bottom: .75rem;
       font-size: .9rem;
       list-style: none;
+    }
+
+    .item-row-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    @media(max-width: 640px) {
+      .item-row-content {
+        grid-template-columns: 1fr;
+        gap: .75rem;
+      }
+    }
+
+    .item-row-field {
+      display: flex;
+      flex-direction: column;
+      gap: .25rem;
+    }
+
+    .item-row-label {
+      font-size: .65rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .item-row-value {
+      font-size: .95rem;
+      font-weight: 500;
+      color: var(--white);
     }
 
     .item-row strong { font-weight: 500; }
@@ -483,8 +516,8 @@
         day: 'Dia',
         list: 'Lista',
       },
-      slotMinTime: '08:00:00',
-      slotMaxTime: '21:00:00',
+      slotMinTime: '09:00:00',
+      slotMaxTime: '18:00:00',
       allDaySlot: false,
       nowIndicator: true,
       height: 'auto',
@@ -611,11 +644,22 @@
       if (!data?.length) { list.innerHTML = '<li class="empty">Nenhum serviço cadastrado.</li>'; return; }
       list.innerHTML = data.map(s => `
         <li class="item-row">
-          <div>
-            <strong>${s.name}</strong>
-            <span class="muted">${s.duration_minutes} min</span>
-            ${s.description ? `<span class="muted">— ${s.description}</span>` : ''}
+          <div class="item-row-content">
+            <div class="item-row-field">
+              <span class="item-row-label">Serviço</span>
+              <span class="item-row-value">${s.name}</span>
+            </div>
+            <div class="item-row-field">
+              <span class="item-row-label">Duração</span>
+              <span class="item-row-value">${s.duration_minutes} minutos</span>
+            </div>
           </div>
+          ${s.description ? `
+          <div class="item-row-field">
+            <span class="item-row-label">Descrição</span>
+            <span class="item-row-value">${s.description}</span>
+          </div>
+          ` : ''}
           <button class="btn-mini ${s.active ? 'active' : ''}" data-toggle-svc="${s.id}" data-active="${s.active}">
             ${s.active ? 'Ativo' : 'Inativo'}
           </button>
@@ -663,12 +707,20 @@
         });
         return `
           <li class="item-row">
-            <div>
-              <strong>${d}</strong>
-              <span class="muted">— ${s.services?.name || 'Sem serviço'}</span>
-              ${s.is_booked ? '<span class="badge">Reservado</span>' : ''}
+            <div class="item-row-content">
+              <div class="item-row-field">
+                <span class="item-row-label">Horário</span>
+                <span class="item-row-value">${d}</span>
+              </div>
+              <div class="item-row-field">
+                <span class="item-row-label">Serviço</span>
+                <span class="item-row-value">${s.services?.name || 'Sem serviço'}</span>
+              </div>
             </div>
-            ${!s.is_booked ? `<button class="btn-mini" data-del-slot="${s.id}">Remover</button>` : ''}
+            <div style="display: flex; align-items: center; gap: .75rem;">
+              ${s.is_booked ? '<span class="badge">Reservado</span>' : ''}
+              ${!s.is_booked ? `<button class="btn-mini" data-del-slot="${s.id}">Remover</button>` : ''}
+            </div>
           </li>
         `;
       }).join('');
@@ -693,7 +745,8 @@
         notify('error', 'Não há atendimento aos domingos e segundas.');
         return;
       }
-      const slot_datetime = date.toISOString();
+      const offset = new Date().getTimezoneOffset() * 60000;
+      const slot_datetime = new Date(date.getTime() - offset).toISOString();
       const { error } = await supabase.from('available_slots').insert({ service_id, slot_datetime });
       if (error) { notify('error', error.message); return; }
       notify('success', 'Horário adicionado');
