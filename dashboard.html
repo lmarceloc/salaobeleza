@@ -100,6 +100,37 @@
       display: flex;
       flex-direction: column;
       gap: .25rem;
+      transition: width .3s;
+      position: relative;
+    }
+
+    .sidebar.collapsed {
+      width: 60px;
+    }
+
+    .sidebar.collapsed .tab-button span {
+      display: none;
+    }
+
+    .sidebar-toggle {
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      padding: .9rem 1.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+      font-family: inherit;
+      transition: color .3s;
+      align-self: flex-start;
+      margin-bottom: .5rem;
+    }
+
+    .sidebar-toggle:hover {
+      color: var(--gold);
+    }
+
+    .sidebar.collapsed .sidebar-toggle {
+      padding: .9rem 0.7rem;
     }
 
     .tab-button {
@@ -375,14 +406,63 @@
     .fc-event.status-completed { background: var(--muted); color: var(--black); }
     .fc-list-day-cushion { background: var(--card) !important; }
     .fc-list-event:hover td { background: rgba(201,169,110,.08) !important; }
+    .fc-timegrid-slot { height: 4em !important; }
+
+    /* ── MODAL ─────────────────────────────── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,.7);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 2rem;
+      border-radius: 8px;
+      max-width: 500px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+    }
+
+    .modal h2 {
+      margin-top: 0;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: color .3s;
+    }
+
+    .modal-close:hover {
+      color: var(--white);
+    }
   </style>
 </head>
 
 <body>
   <nav class="topbar">
-    <div class="brand">
-      <a href="/dashboard"><img src="/logo_nyl_branca.png" alt="Nyl Hair Design" /></a>
-    </div>
+    <div class="brand"></div>
     <div class="user-meta">
       <span id="user-email"></span>
       <button class="btn-ghost" id="logout-btn">Sair</button>
@@ -391,10 +471,10 @@
 
   <div class="layout">
     <aside class="sidebar">
-      <button class="tab-button active" data-tab="agenda">Agenda</button>
-      <button class="tab-button" data-tab="novo">Novo Agendamento</button>
-      <button class="tab-button" data-tab="servicos">Serviços</button>
-      <button class="tab-button" data-tab="horarios">Horários</button>
+      <button class="sidebar-toggle" id="sidebar-toggle">☰</button>
+      <button class="tab-button active" data-tab="agenda"><span>Agenda</span></button>
+      <button class="tab-button" data-tab="novo"><span>Novo Agendamento</span></button>
+      <button class="tab-button" data-tab="servicos"><span>Serviços</span></button>
     </aside>
 
     <main class="main">
@@ -449,23 +529,32 @@
         </form>
       </section>
 
-      <section class="view" data-view="horarios">
-        <h1>Horários Disponíveis</h1>
-        <p class="subtitle">Próximos 50 slots. Adicione novos horários abaixo.</p>
-        <ul id="slots-list"></ul>
-
-        <h2>Adicionar Horário</h2>
-        <form class="stack" id="slot-form" novalidate>
-          <label for="slot-svc">Serviço</label>
-          <select id="slot-svc" required></select>
-
-          <label for="slot-datetime">Data e hora</label>
-          <input id="slot-datetime" type="datetime-local" required />
-
-          <button type="submit" class="btn-primary">Adicionar Horário</button>
-        </form>
-      </section>
     </main>
+  </div>
+
+  <div class="modal-overlay" id="quick-booking-modal">
+    <div class="modal">
+      <button class="modal-close" id="modal-close">✕</button>
+      <h2>Agendamento Rápido</h2>
+      <form class="stack" id="quick-booking-form" novalidate>
+        <label for="quick-svc">Serviço</label>
+        <select id="quick-svc" required></select>
+
+        <label for="quick-datetime">Data e hora</label>
+        <input id="quick-datetime" type="datetime-local" required readonly />
+
+        <label for="quick-name">Nome do cliente</label>
+        <input id="quick-name" type="text" autocomplete="name" required />
+
+        <label for="quick-phone">Telefone (WhatsApp)</label>
+        <input id="quick-phone" type="tel" placeholder="(42) 99999-9999" required />
+
+        <label for="quick-notes">Observações (opcional)</label>
+        <textarea id="quick-notes"></textarea>
+
+        <button type="submit" class="btn-primary">Confirmar Agendamento</button>
+      </form>
+    </div>
   </div>
 
   <div class="toast" id="toast"></div>
@@ -478,6 +567,17 @@
 
     document.getElementById('user-email').textContent = session.user.email;
     document.getElementById('logout-btn').addEventListener('click', logout);
+
+    /* ── SIDEBAR TOGGLE ────────────────────────────── */
+    const sidebar = document.querySelector('.sidebar');
+    const sidebarToggle = document.getElementById('sidebar-toggle');
+    sidebarToggle.addEventListener('click', () => {
+      sidebar.classList.toggle('collapsed');
+      localStorage.setItem('sidebar-collapsed', sidebar.classList.contains('collapsed'));
+    });
+    if (localStorage.getItem('sidebar-collapsed') === 'true') {
+      sidebar.classList.add('collapsed');
+    }
 
     /* ── TOAST ──────────────────────────── */
     const toast = document.getElementById('toast');
@@ -559,8 +659,72 @@
         if (error) notify('error', error.message);
         else { notify('success', 'Agendamento cancelado'); calendar.refetchEvents(); }
       },
+      dateClick: (info) => {
+        const modal = document.getElementById('quick-booking-modal');
+        const datetimeInput = document.getElementById('quick-datetime');
+        const date = new Date(info.dateStr);
+        const offset = new Date().getTimezoneOffset() * 60000;
+        const localDate = new Date(date.getTime() - offset);
+        datetimeInput.value = localDate.toISOString().slice(0, 16);
+        modal.classList.add('active');
+      },
     });
     calendar.render();
+
+    /* ── QUICK BOOKING MODAL ──────────────── */
+    const quickModal = document.getElementById('quick-booking-modal');
+    const modalClose = document.getElementById('modal-close');
+    const quickBookingForm = document.getElementById('quick-booking-form');
+
+    modalClose.addEventListener('click', () => quickModal.classList.remove('active'));
+    quickModal.addEventListener('click', (e) => {
+      if (e.target === quickModal) quickModal.classList.remove('active');
+    });
+
+    quickBookingForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const service_id = document.getElementById('quick-svc').value;
+      const booked_at = document.getElementById('quick-datetime').value;
+      const client_name = document.getElementById('quick-name').value.trim();
+      const client_phone = document.getElementById('quick-phone').value.trim();
+      const notes = document.getElementById('quick-notes').value.trim() || null;
+
+      if (!service_id || !booked_at || !client_name || !client_phone) {
+        notify('error', 'Preencha todos os campos obrigatórios.');
+        return;
+      }
+
+      const offset = new Date().getTimezoneOffset() * 60000;
+      const slot_datetime = new Date(new Date(booked_at).getTime() + offset).toISOString();
+
+      const { data: slots } = await supabase
+        .from('available_slots')
+        .select('id')
+        .eq('service_id', service_id)
+        .eq('slot_datetime', slot_datetime)
+        .limit(1);
+
+      if (!slots?.length) {
+        notify('error', 'Nenhum horário disponível para este serviço nesta data/hora.');
+        return;
+      }
+
+      const { error } = await supabase.from('bookings').insert({
+        service_id,
+        slot_id: slots[0].id,
+        booked_at: slot_datetime,
+        client_name,
+        client_phone,
+        notes,
+      });
+
+      if (error) { notify('error', error.message); return; }
+
+      notify('success', 'Agendamento confirmado!');
+      quickBookingForm.reset();
+      quickModal.classList.remove('active');
+      calendar.refetchEvents();
+    });
 
     /* ── SHARED DATA ────────────────────── */
     async function loadActiveServices() {
@@ -573,7 +737,7 @@
       const options = '<option value="">Selecione...</option>' +
         services.map(s => `<option value="${s.id}">${s.name}</option>`).join('');
       document.getElementById('svc-select').innerHTML = options;
-      document.getElementById('slot-svc').innerHTML = options;
+      document.getElementById('quick-svc').innerHTML = options;
     }
 
     /* ── NEW BOOKING ────────────────────── */
@@ -690,74 +854,9 @@
       await populateServiceDropdowns();
     });
 
-    /* ── SLOTS TAB ──────────────────────── */
-    async function renderSlots() {
-      const { data } = await supabase
-        .from('available_slots')
-        .select('*, services(name)')
-        .gte('slot_datetime', new Date().toISOString())
-        .order('slot_datetime')
-        .limit(50);
-      const list = document.getElementById('slots-list');
-      if (!data?.length) { list.innerHTML = '<li class="empty">Nenhum horário futuro cadastrado.</li>'; return; }
-      list.innerHTML = data.map(s => {
-        const d = new Date(s.slot_datetime).toLocaleString('pt-BR', {
-          weekday: 'short', day: '2-digit', month: '2-digit',
-          hour: '2-digit', minute: '2-digit',
-        });
-        return `
-          <li class="item-row">
-            <div class="item-row-content">
-              <div class="item-row-field">
-                <span class="item-row-label">Horário</span>
-                <span class="item-row-value">${d}</span>
-              </div>
-              <div class="item-row-field">
-                <span class="item-row-label">Serviço</span>
-                <span class="item-row-value">${s.services?.name || 'Sem serviço'}</span>
-              </div>
-            </div>
-            <div style="display: flex; align-items: center; gap: .75rem;">
-              ${s.is_booked ? '<span class="badge">Reservado</span>' : ''}
-              ${!s.is_booked ? `<button class="btn-mini" data-del-slot="${s.id}">Remover</button>` : ''}
-            </div>
-          </li>
-        `;
-      }).join('');
-      list.querySelectorAll('[data-del-slot]').forEach(b => {
-        b.addEventListener('click', async () => {
-          if (!confirm('Remover este horário?')) return;
-          const { error } = await supabase.from('available_slots').delete().eq('id', b.dataset.delSlot);
-          if (error) notify('error', error.message);
-          else { notify('success', 'Horário removido'); await renderSlots(); }
-        });
-      });
-    }
-
-    document.getElementById('slot-form').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const service_id = document.getElementById('slot-svc').value;
-      const raw = document.getElementById('slot-datetime').value;
-      if (!service_id || !raw) { notify('error', 'Selecione serviço e horário.'); return; }
-      const date = new Date(raw);
-      const dow = date.getDay();
-      if (dow === 0 || dow === 1) {
-        notify('error', 'Não há atendimento aos domingos e segundas.');
-        return;
-      }
-      const offset = new Date().getTimezoneOffset() * 60000;
-      const slot_datetime = new Date(date.getTime() - offset).toISOString();
-      const { error } = await supabase.from('available_slots').insert({ service_id, slot_datetime });
-      if (error) { notify('error', error.message); return; }
-      notify('success', 'Horário adicionado');
-      e.target.reset();
-      await renderSlots();
-    });
-
     /* ── INIT ────────────────────────────── */
     await populateServiceDropdowns();
     await renderServices();
-    await renderSlots();
   </script>
 
   <script defer src="/_vercel/insights/script.js"></script>
